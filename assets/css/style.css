@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  background-color: lightgray;
+  background-color: rgb(241, 239, 239);
 }
 
 header {
@@ -16,7 +16,7 @@ header button {
   border-radius: 10px;
 }
 
-header button:hover, .startButton:hover {
+header button:hover, #startButton:hover {
   background-color: yellow;
 }
 
@@ -41,8 +41,10 @@ h1 {
 main p {
   font-style: italic;
 }
-.startButton {
+#startButton {
   border-radius: 7px;
   font-size: 30px;
   margin: 10px;
+  color: blue;
+  
 }

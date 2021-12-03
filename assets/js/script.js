@@ -1,14 +1,22 @@
-var timerEl = document.getElementById("#timer");
-var quizBoxEl = document.getElementById("#quizBox");
-var startButtonEl = document.getElementById("startButton")
-var submitButtonEl = document.getElementById("submitButton")
+// variables from HTML
+var timerEl = document.querySelector("#timer");
+var quizBoxEl = document.querySelector("#quizBox");
+var startButtonEl = document.querySelector("#startButton");
+var submitButtonEl = document.querySelector("#submitButton");
+var quizAreaEl = document.querySelector("#quizArea");
+
+// variables for time
+var startTime = 75;
+
+var holdInterval = 0;
+var timePenalty = 10;
 
 //array of questions and answers
 var quizQuestions = [
   {
     question: "Where is the correct place to insert JavaScript?",
-    answers: ["the <body> section","the <head> section","both the <head> and the <body> section","the <header> section"],
-    correctAnswer: "the <body> section"
+    answers: ["the <body> section","the <head> section","either the <head> and the <body> section","the <header> section"],
+    correctAnswer: "either the <head> and the <body> section"
   },
   {
     question: "What does DOM stand for?",
@@ -31,7 +39,19 @@ var quizQuestions = [
     correctAnswer: "Math.min(x,y)"
   }
 ];
-console.log();
+
+//starts timer once button is clicked
+startButtonEl.addEventListener("click", function () {
+  var countdownTimer = setInterval(function() {
+    if (startTime <=0) {
+      clearInterval(countdownTimer);
+      timerEl.textContent = "Finished"
+    }else{
+      timerEl.textContent = "Timer: " + startTime;
+    }
+    startTime-=1;
+  }, 1000);
+});
 
 // quiz function
 function startQuiz(){
@@ -50,5 +70,9 @@ function showResults(){
 startQuiz();
 
 
-//shows the results from the button click
-submitButtonEl.addEventListener("click", showResults);
+// //shows the results from the button click
+// submitButtonEl.addEventListener("click", showResults);
+
+// //starts the game with button click
+startButtonEl.addEventListener("click", startQuiz);
+console.log("Starting quiz now");
