@@ -16,7 +16,7 @@ header button {
   border-radius: 10px;
 }
 
-header button:hover, #startButton:hover {
+header button:hover, #startButton:hover, li:hover {
   background-color: yellow;
 }
 
@@ -25,13 +25,16 @@ header div {
   padding-right: 10px;
 }
 
-main {
+#quizArea {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-content: center;
   padding-top: 200px;
   align-items: center;
+  font-size: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
 }
 
 h1 {
@@ -48,3 +51,19 @@ main p {
   color: blue;
   
 }
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  background-color: lightgreen;
+  margin-top: 15px;
+  padding: 5px 15px;
+  width: 80%;
+  font-size: 18px;
+  border-radius: 12px;
+  
+}
+
+

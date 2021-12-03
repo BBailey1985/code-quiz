@@ -1,15 +1,15 @@
 // variables from HTML
 var timerEl = document.querySelector("#timer");
-var quizBoxEl = document.querySelector("#quizBox");
 var startButtonEl = document.querySelector("#startButton");
 var submitButtonEl = document.querySelector("#submitButton");
 var quizAreaEl = document.querySelector("#quizArea");
 
-// variables for time
+// other variables
 var startTime = 75;
-
-var holdInterval = 0;
+var indexQuestions = 0;
+var score = 0;
 var timePenalty = 10;
+var createUl = document.createElement("ul");
 
 //array of questions and answers
 var quizQuestions = [
@@ -45,34 +45,59 @@ startButtonEl.addEventListener("click", function () {
   var countdownTimer = setInterval(function() {
     if (startTime <=0) {
       clearInterval(countdownTimer);
-      timerEl.textContent = "Finished"
+      timerEl.textContent = "Time's up!"
     }else{
       timerEl.textContent = "Timer: " + startTime;
     }
-    startTime-=1;
+    startTime--;
   }, 1000);
+  render(indexQuestions);
 });
 
 // quiz function
-function startQuiz(){
-
-
+function render(indexQuestions) {
+  //clear existing data
+  quizAreaEl.textContent = "";
+  createUl.textContent = "";
+  //questions loop
+  for (var i = 0; i < quizQuestions.length; i++) {
+    var userQuestion = quizQuestions[indexQuestions].question;
+    var userAnswers = quizQuestions[indexQuestions].answers;
+    quizAreaEl.textContent = userQuestion;
+  }
+  userAnswers.forEach(function (newLine) {
+    var listItem = document.createElement("li");
+    listItem.textContent = newLine;
+    quizAreaEl.appendChild(createUl);
+    createUl.appendChild(listItem);
+    listItem.addEventListener("click", (validate));
+  })
 };
 
-// shows the results of the quiz
-function showResults(){
+// validating selection with answers
+function validate(event) {
+  var element = event.target;
 
-
-
+  if (element.matches("li"))
+  var newDiv = document.createElement("div");
+  newDiv.setAttribute("id", "newDiv");
+  // if answer is correct
+  if (element.textContent == quizQuestions[indexQuestions].answers) {
+    score++;
+    newDiv.textContent = "Correct!"
+    // if answer is wrong
+  } else {
+    startTime = startTime - timePenalty;
+    newDiv.textContent = "Wrong!"
+  }
 }
 
-//runs the quiz function
-startQuiz();
+// the indexQuestions figures out which number question user is on
+indexQuestions++;
+
+if (indexQuestions > quizQuestions.length) {
+  resultsPage();
+  newDiv.textContent = "Great job!" + " " + "You got " + score + "/" + quizQuestions.length + " Correct!";
+}
 
 
-// //shows the results from the button click
-// submitButtonEl.addEventListener("click", showResults);
-
-// //starts the game with button click
-startButtonEl.addEventListener("click", startQuiz);
-console.log("Starting quiz now");
