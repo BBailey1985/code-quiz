@@ -1,5 +1,6 @@
 var timerEl = document.getElementById("#timer");
 var quizBoxEl = document.getElementById("#quizBox");
+var startButtonEl = document.getElementById("startButton")
 var submitButtonEl = document.getElementById("submitButton")
 
 //array of questions and answers
@@ -30,7 +31,7 @@ var quizQuestions = [
     correctAnswer: "Math.min(x,y)"
   }
 ];
-
+console.log();
 
 // quiz function
 function startQuiz(){
