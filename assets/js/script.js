@@ -5,7 +5,7 @@ var submitButtonEl = document.querySelector("#submitButton");
 var quizAreaEl = document.querySelector("#quizArea");
 
 // other variables
-var startTime = 50;
+var startTime = 40;
 var indexQuestions = 0;
 var score = 0;
 var timePenalty = 10;
@@ -30,7 +30,7 @@ var quizQuestions = [
   },
   {
     question: "Which built-in method combines the text of two strings and returns a new string?",
-    answers: ["append()","concat()","attach()","None of these"],
+    answers: ["append()","attach()","concat()","None of these"],
     correctAnswer: "concat()"
   },
   {
@@ -87,12 +87,10 @@ function validate(event) {
     if (element.textContent == quizQuestions[indexQuestions].correctAnswer) {
       score++;
       newDiv.textContent = "Correct! Great Job";
-      console.log(newDiv);
       // if answer is wrong
     } else {
       startTime = startTime - timePenalty;
       newDiv.textContent = "Incorrect. Better luck next time";
-      console.log(newDiv);
     }
   }
   // the indexQuestions figures out which number question user is on
@@ -100,7 +98,7 @@ function validate(event) {
 
   if (indexQuestions >= quizQuestions.length) {
     resultsPage();
-    newDiv.textContent = "Great job!" + " " + "You got " + score + " out of " + quizQuestions.length + " Correct!";
+    document.querySelector("#newDiv").display = "none";
   } else {
     render(indexQuestions);
   }
@@ -108,17 +106,25 @@ function validate(event) {
 }
 
 // results page
-function resultsPage () {
+function resultsPage() {
    //clear existing data
-   quizAreaEl.textContent = "";
-   timerEl.textContent = "";
+   quizAreaEl.textContent ="";
+   timerEl.remove();
 
    //new header created
    var newH1 = document.createElement("h1");
    newH1.setAttribute("id", "newH1");
-   newH1.textContent = "Thanks for playing!"
+   newH1.textContent = "Thanks for playing!";
 
    quizAreaEl.appendChild(newH1);
+
+   // new text paragraph created
+   var newP = document.createElement("p")
+   newP.setAttribute("p", "newP");
+   newP.textContent = "Great job!" + " " + "You got " + score + " out of " + quizQuestions.length + " Correct!"; 
+
+   quizAreaEl.appendChild(newP);
+
 
 
 }
