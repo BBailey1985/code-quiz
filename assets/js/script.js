@@ -5,7 +5,7 @@ var submitButtonEl = document.querySelector("#submitButton");
 var quizAreaEl = document.querySelector("#quizArea");
 
 // other variables
-var startTime = 75;
+var startTime = 50;
 var indexQuestions = 0;
 var score = 0;
 var timePenalty = 10;
@@ -43,9 +43,11 @@ var quizQuestions = [
 //starts timer once button is clicked
 startButtonEl.addEventListener("click", function () {
   var countdownTimer = setInterval(function() {
+    
     if (startTime <=0) {
       clearInterval(countdownTimer);
-      timerEl.textContent = "Time's up!"
+      timerEl.textContent = "Time's up!";
+      resultsPage();
     }else{
       timerEl.textContent = "Timer: " + startTime;
     }
@@ -71,33 +73,53 @@ function render(indexQuestions) {
     quizAreaEl.appendChild(createUl);
     createUl.appendChild(listItem);
     listItem.addEventListener("click", (validate));
-  })
-};
+  });
+}
 
 // validating selection with answers
 function validate(event) {
   var element = event.target;
 
-  if (element.matches("li"))
-  var newDiv = document.createElement("div");
-  newDiv.setAttribute("id", "newDiv");
-  // if answer is correct
-  if (element.textContent == quizQuestions[indexQuestions].answers) {
-    score++;
-    newDiv.textContent = "Correct!"
-    // if answer is wrong
-  } else {
-    startTime = startTime - timePenalty;
-    newDiv.textContent = "Wrong!"
+  if (element.matches("li")) {
+    var newDiv = document.createElement("div");
+    newDiv.setAttribute("id", "newDiv");
+    // if answer is correct
+    if (element.textContent == quizQuestions[indexQuestions].correctAnswer) {
+      score++;
+      newDiv.textContent = "Correct! Great Job";
+      console.log(newDiv);
+      // if answer is wrong
+    } else {
+      startTime = startTime - timePenalty;
+      newDiv.textContent = "Incorrect. Better luck next time";
+      console.log(newDiv);
+    }
   }
+  // the indexQuestions figures out which number question user is on
+  indexQuestions++;
+
+  if (indexQuestions >= quizQuestions.length) {
+    resultsPage();
+    newDiv.textContent = "Great job!" + " " + "You got " + score + " out of " + quizQuestions.length + " Correct!";
+  } else {
+    render(indexQuestions);
+  }
+  quizAreaEl.appendChild(newDiv);
 }
 
-// the indexQuestions figures out which number question user is on
-indexQuestions++;
+// results page
+function resultsPage () {
+   //clear existing data
+   quizAreaEl.textContent = "";
+   timerEl.textContent = "";
 
-if (indexQuestions > quizQuestions.length) {
-  resultsPage();
-  newDiv.textContent = "Great job!" + " " + "You got " + score + "/" + quizQuestions.length + " Correct!";
+   //new header created
+   var newH1 = document.createElement("h1");
+   newH1.setAttribute("id", "newH1");
+   newH1.textContent = "Thanks for playing!"
+
+   quizAreaEl.appendChild(newH1);
+
+
 }
-
 

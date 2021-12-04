@@ -60,10 +60,18 @@ li {
   background-color: lightgreen;
   margin-top: 15px;
   padding: 5px 15px;
-  width: 80%;
+  width: 100%;
   font-size: 18px;
   border-radius: 12px;
   
+}
+
+#newDiv {
+  margin-top: 20px;
+  border-top: 3px solid black;
+  font-size: 25px;
+  width: 60%;
+  text-align: center;
 }
 
 
