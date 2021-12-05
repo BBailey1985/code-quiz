@@ -52,7 +52,7 @@ main p {
   
 }
 
-ul {
+ul, #scoreLi {
   list-style-type: none;
 }
 

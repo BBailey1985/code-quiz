@@ -157,22 +157,22 @@ function resultsPage() {
        score: score,
      }
      var allScores = localStorage.getItem("allScores");
-      allScores = JSON.parse(allScores);
-      allScores.push(finalScore);
-      var newScore = JSON.stringify(allScores);
-      localStorage.setItem("allScores", newScore);
-      highscoresPage();
-   });
-}
+     allScores = JSON.parse(allScores);
+     allScores.push(finalScore);
+     var newScore = JSON.stringify(allScores);
+     localStorage.setItem("allScores", newScore);
+     highscoresPage();
+  });
+};
 
-//display highscores
-function highscoresPage (){
+// high scores page
+function highscoresPage() {
   //clear the page
   quizAreaEl.textContent ="";
 
-  var allScores = localStorage.getItem("allScores")
+  var allScores = localStorage.getItem("allScores");
   allScores = JSON.parse(allScores);
-
+  
    //new header created
    var scoreH1 = document.createElement("h1");
    scoreH1.setAttribute("id", "scoreH1");
@@ -181,9 +181,8 @@ function highscoresPage (){
 
   // create li for initials and scores
   var scoreLi = document.createElement("li");
+  scoreLi.setAttribute("id", "scoreLi");
   scoreLi.textContent = allScores.initials + " " + allScores.score;
   console.log(scoreLi);
-  quizAreaEl.appendChild(scoreLi);
-    
-  
-}
+  quizAreaEl.appendChild(scoreLi); 
+};
