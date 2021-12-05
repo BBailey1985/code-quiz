@@ -10,7 +10,7 @@ There are 5 questions in the quiz and every wrong answer gets a penalty of 10 po
 
 Once the quiz is complete, or the player runs out of time, the score is displayed.
 
-Then you can add your inititals and add your score to localStorage.
+Then you can add your initials and add your score to localStorage.
 
 ![image](https://user-images.githubusercontent.com/90005053/144733434-46d93177-c5ea-4a6d-81a4-10fd2c3c66e6.png)
 
