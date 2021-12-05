@@ -98,11 +98,10 @@ function validate(event) {
 
   if (indexQuestions >= quizQuestions.length) {
     resultsPage();
-    document.querySelector("#newDiv").display = "none";
+    newDiv.remove();
   } else {
     render(indexQuestions);
   }
-  quizAreaEl.appendChild(newDiv);
 }
 
 // results page
@@ -123,6 +122,12 @@ function resultsPage() {
    resultsP.setAttribute("p", "resultsP");
    resultsP.textContent = "You got " + score + " out of " + quizQuestions.length + " Correct!"; 
    quizAreaEl.appendChild(resultsP);
+
+   //another text paragraph created for score
+   var scoreP = document.createElement("p")
+   scoreP.setAttribute("p", "resultsP");
+   scoreP.textContent = "Your final score is: " + score; 
+   quizAreaEl.appendChild(scoreP);
 
    //enter initials label
    var resultsLabel = document.createElement("label");
@@ -151,7 +156,34 @@ function resultsPage() {
        initials: initials,
        score: score,
      }
-     
-   })
+     var allScores = localStorage.getItem("allScores");
+      allScores = JSON.parse(allScores);
+      allScores.push(finalScore);
+      var newScore = JSON.stringify(allScores);
+      localStorage.setItem("allScores", newScore);
+      highscoresPage();
+   });
+}
 
+//display highscores
+function highscoresPage (){
+  //clear the page
+  quizAreaEl.textContent ="";
+
+  var allScores = localStorage.getItem("allScores")
+  allScores = JSON.parse(allScores);
+
+   //new header created
+   var scoreH1 = document.createElement("h1");
+   scoreH1.setAttribute("id", "scoreH1");
+   scoreH1.textContent = "Highscores";
+   quizAreaEl.appendChild(scoreH1);
+
+  // create li for initials and scores
+  var scoreLi = document.createElement("li");
+  scoreLi.textContent = allScores.initials + " " + allScores.score;
+  console.log(scoreLi);
+  quizAreaEl.appendChild(scoreLi);
+    
+  
 }
