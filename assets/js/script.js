@@ -112,20 +112,46 @@ function resultsPage() {
    timerEl.remove();
 
    //new header created
-   var newH1 = document.createElement("h1");
-   newH1.setAttribute("id", "newH1");
-   newH1.textContent = "Thanks for playing!";
+   var resultsH1 = document.createElement("h1");
+   resultsH1.setAttribute("id", "resultsH1");
+   resultsH1.textContent = "Thanks for playing!";
 
-   quizAreaEl.appendChild(newH1);
+   quizAreaEl.appendChild(resultsH1);
 
    // new text paragraph created
-   var newP = document.createElement("p")
-   newP.setAttribute("p", "newP");
-   newP.textContent = "Great job!" + " " + "You got " + score + " out of " + quizQuestions.length + " Correct!"; 
+   var resultsP = document.createElement("p")
+   resultsP.setAttribute("p", "resultsP");
+   resultsP.textContent = "You got " + score + " out of " + quizQuestions.length + " Correct!"; 
+   quizAreaEl.appendChild(resultsP);
 
-   quizAreaEl.appendChild(newP);
+   //enter initials label
+   var resultsLabel = document.createElement("label");
+   resultsLabel.setAttribute("id", resultsLabel);
+   resultsLabel.textContent = "Enter your initials: ";
+   quizAreaEl.appendChild(resultsLabel);
 
+   // enter initials form
+   var resultsForm = document.createElement("input");
+   resultsForm.setAttribute("type", "text");
+   resultsForm.setAttribute("id", "initials");
+   resultsForm.setAttribute("placeholder", "Enter Initials Here");
+   quizAreaEl.appendChild(resultsForm);
 
+   // submit button
+   var resultsButton = document.createElement("button")
+   resultsButton.setAttribute("type", "submit");
+   resultsButton.setAttribute("id", "submit");
+   resultsButton.textContent = "Submit";
+   quizAreaEl.appendChild(resultsButton);
+
+   // event listener for resultsButton
+   resultsButton.addEventListener("click", function() {
+     initials = resultsForm.value;
+     var finalScore = {
+       initials: initials,
+       score: score,
+     }
+     
+   })
 
 }
-

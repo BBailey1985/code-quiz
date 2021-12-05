@@ -9,14 +9,14 @@ header {
   justify-content: space-between;
 }
 
-header button {
+header button, #submit {
   font-size: 18px;
   color: blue;
   padding: 5px;
   border-radius: 10px;
 }
 
-header button:hover, #startButton:hover, li:hover {
+header button:hover, #startButton:hover, li:hover, #submit:hover {
   background-color: yellow;
 }
 
@@ -74,4 +74,12 @@ li {
   text-align: center;
 }
 
+#initials {
+  margin-top: 10px;
+  padding: 10px auto;
+}
 
+#submit {
+  margin-top: 10px;
+  font-size: 20px;
+}
