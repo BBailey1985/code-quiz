@@ -1,7 +1,6 @@
 // variables from HTML
 var timerEl = document.querySelector("#timer");
 var startButtonEl = document.querySelector("#startButton");
-var submitButtonEl = document.querySelector("#submitButton");
 var quizAreaEl = document.querySelector("#quizArea");
 
 // other variables
@@ -80,7 +79,7 @@ function render(indexQuestions) {
 function validate(event) {
   var element = event.target;
 
-  if (element.matches("li")) {
+  // if (element.matches("li")) {
     var newDiv = document.createElement("div");
     newDiv.setAttribute("id", "newDiv");
     // if answer is correct
@@ -91,17 +90,19 @@ function validate(event) {
     } else {
       startTime = startTime - timePenalty;
       newDiv.textContent = "Incorrect. Better luck next time";
-    }
+      
   }
+  
   // the indexQuestions figures out which number question user is on
   indexQuestions++;
 
   if (indexQuestions >= quizQuestions.length) {
     resultsPage();
-    newDiv.remove();
+    newDiv.style.display = "none";
   } else {
     render(indexQuestions);
   }
+  quizAreaEl.appendChild(newDiv);
 }
 
 // results page
@@ -151,7 +152,7 @@ function resultsPage() {
 
    // event listener for resultsButton
    resultsButton.addEventListener("click", function() {
-     initials = resultsForm.value;
+     var initials = resultsForm.value;
      var finalScore = {
        initials: initials,
        score: score,
@@ -172,7 +173,6 @@ function resultsPage() {
 // high scores page
 function highscoresPage() {
   //clear the page
-  // localStorage.clear();
   quizAreaEl.textContent ="";
 
    //new header created
@@ -192,4 +192,5 @@ function highscoresPage() {
       quizAreaEl.appendChild(scoreLi);
      }
    }
+
 };
