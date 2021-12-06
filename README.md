@@ -18,3 +18,6 @@ Then you can add your initials and add your score to localStorage.
 ![image](https://user-images.githubusercontent.com/90005053/144733441-11a6b00e-7354-4b0d-9bf6-a02021be8f36.png)
 
 ![image](https://user-images.githubusercontent.com/90005053/144733447-28615c80-a21f-44e3-bc4b-cce7451868d0.png)
+
+![image](https://user-images.githubusercontent.com/90005053/144766846-7610da47-7b06-4450-97ea-6f14be3da48b.png)
+
